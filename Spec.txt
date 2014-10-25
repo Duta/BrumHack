@@ -1,0 +1,22 @@
+GAME SPECIFICATION
+
+- Ask user what country/currency they want to play with.
+
+- Need to add currency conversion?
+
+- Variety in the style of questions.
+                1) Given image and country, guess price.
+                2) Given image and price, guess country out of a set of countries.
+                3) Given country and price, guess the product out of a set.
+
+- Use a random generation of objects?
+
+- Give user a choice of a category of objects or a random category or all.
+
+- Create difficulties:
+        1) Easy: Guess a price range from a set of ranges, small selection of countries/products
+        2) Medium: Guess a price within a range, medium selection of countries/products
+        3) Hard: Guess the exact price, large selection of countries/products
+        4) Ridiculous: Guess the average price of a product across all countries
+
+- Points system - Scaling for difficulty level

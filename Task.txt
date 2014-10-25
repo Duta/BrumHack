@@ -1,0 +1,16 @@
+TASKS
+
+- Work out how to connect to Bloomberg VPN
+
+- And how we are going to access the data.
+
+- Do Bloomberg store images? If not, where will we get them from?
+- How do we relate the data from Blooberg to the images.
+
+- Discuss implementation details (when bertie gets back)
+
+- Design of user interface
+
+- Work out how question will be generated?
+
+- Also how will we catagorize questions? 
