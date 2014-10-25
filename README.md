@@ -8,6 +8,7 @@ http://www.bloomberglabs.com/content/uploads/sites/2/2014/07/blpapi-developers-g
 TODO
 ====
 
+```
 Sepand <- Implement UI
 Jacek  <- Work out how to plug together a Java backend to the web frontend
 Chris  <- Work out how to use the Bloomberg tingz
@@ -18,3 +19,4 @@ Chris  <- Work out how to use the Bloomberg tingz
 Bertie <- Get images for countries and images
        <- Add some PHAT BEETZ
        <- Generate random selections
+```
