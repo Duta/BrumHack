@@ -1,0 +1,30 @@
+package DataRequest;
+
+public class DataValue {
+
+	private String COUNTRY;
+	private String SECURITY;
+	private String FIELD;
+	
+	
+	public String getSECURITY() {
+		return SECURITY;
+	}
+
+	public void setSECURITY(String sECURITY) {
+		SECURITY = sECURITY;
+	}
+
+	public String getFIELD() {
+		return FIELD;
+	}
+
+	public void setFIELD(String fIELD) {
+		FIELD = fIELD;
+	}
+	
+	public String getCountry() {
+		return this.COUNTRY;
+	}
+	
+}

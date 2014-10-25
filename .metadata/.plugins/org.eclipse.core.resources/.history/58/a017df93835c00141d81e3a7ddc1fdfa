@@ -1,0 +1,17 @@
+package DataRequest;
+
+import java.util.ArrayList;
+
+public class SearchBloomberg {
+
+	private ArrayList<DataValue> searchList=
+			{new DataValue(),
+			new DataValue()
+			};
+	
+	public String getValue(String country, String security){
+		for (DataValue dv : searchList) {
+			if((country==dv.COUNTRY)&&(security==dv.SECURITY)) return dv.VALUE;
+		}
+	}
+}
