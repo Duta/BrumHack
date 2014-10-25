@@ -1,4 +1,4 @@
-package com.brumhack.guesstheprice.util;
+package com.brumhack.guessthestats.util;
 
 import android.app.Activity;
 import android.view.View;

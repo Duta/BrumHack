@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.brumhack.guesstheprice" >
+    package="com.brumhack.guessthestats" >
 
     <application
         android:allowBackup="true"
@@ -8,15 +8,45 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
-            android:theme="@style/FullscreenTheme" >
+            android:name="com.brumhack.guessthestats.TitleScreen"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.brumhack.guessthestats.GameModeScreen"
+            android:label="@string/app_name"
+            android:parentActivityName="com.brumhack.guessthestats.TitleScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.brumhack.guesstheprice.TitleScreen" />
+        </activity>
+        <activity
+            android:name="com.brumhack.guessthestats.Mode1Screen"
+            android:label="@string/app_name"
+            android:parentActivityName="com.brumhack.guessthestats.GameModeScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.brumhack.guesstheprice.GameModeScreen" />
+        </activity>
+        <activity
+            android:name="com.brumhack.guessthestats.Mode2Screen"
+            android:label="@string/app_name"
+            android:parentActivityName="com.brumhack.guessthestats.GameModeScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.brumhack.guesstheprice.GameModeScreen" />
+        </activity>
+        <activity
+            android:name="com.brumhack.guessthestats.Mode3Screen"
+            android:label="@string/app_name"
+            android:parentActivityName="com.brumhack.guessthestats.GameModeScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.brumhack.guesstheprice.GameModeScreen" />
         </activity>
     </application>
 
