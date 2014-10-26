@@ -9,7 +9,6 @@ import android.view.View;
 
 
 public class GameModeScreen extends Activity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -2,42 +2,59 @@ package com.brumhack.guessthestats;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Mode1Screen extends Activity {
     private static final int NUM_ROUNDS = 2;
+    private static final int MAX_SCORE = 100;
     private int roundsCompleted;
     private int currentScore;
+    private Question question;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mode1_screen);
         getActionBar().hide();
+
         Bundle b = getIntent().getExtras();
         if(b != null) {
             roundsCompleted = b.getInt("rounds");
             currentScore = b.getInt("results");
         }
+
         TextView scoreText = (TextView)findViewById(R.id.score);
         scoreText.setText(getString(R.string.current_score_prefix) + " " + currentScore);
 
+        question = QuestionsGenerator.getInstance().getRandomQuestion(this);
+
         ImageView countryImage = (ImageView)findViewById(R.id.countryImage);
-        countryImage.setImageURI(Uri.fromFile(new File()));
-//        int width = 300;
-//        int height = 200;
-//        new DownloadImageTask((ImageView)findViewById(R.id.countryImage))
-//            .doInBackground("http://placekitty.artisan.io/" + width + "/" + height);
+        try {
+            InputStream is = getAssets().open(question.getCountry() + ".png");
+            countryImage.setImageDrawable(Drawable.createFromStream(is, null));
+        } catch(IOException ex) {
+            countryImage.setImageResource(R.drawable.thatguy);
+        }
+
+        TextView countryName = (TextView)findViewById(R.id.countryName);
+        countryName.setText(question.getCountryPretty());
+
+        TextView descriptionView = (TextView)findViewById(R.id.description);
+        descriptionView.setText(question.getDescription());
     }
 
     @Override
@@ -59,12 +76,23 @@ public class Mode1Screen extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public int getScore() {
-        return (int)(100*Math.random());
-    }
-
     public void guess(View view) {
-        int score = getScore();
+        TextView invalidInput = (TextView)findViewById(R.id.invalidInput);
+        invalidInput.setVisibility(View.GONE);
+
+        EditText userInput = (EditText)findViewById(R.id.userInput);
+        int given;
+        try {
+            given = Integer.parseInt(userInput.getText().toString());
+        } catch(NumberFormatException e) {
+            invalidInput.setVisibility(View.VISIBLE);
+            return;
+        }
+        int correct = question.getValue();
+        int delta = Math.abs(given - correct);
+        double difficultyModifier = 75;
+        double reduction = (difficultyModifier*delta)/correct;
+        int score = Math.max(0, MAX_SCORE - (int)Math.round(reduction));
 
         currentScore += score;
 
@@ -95,6 +123,7 @@ public class Mode1Screen extends Activity {
         });
 
         TextView correctValueView = (TextView)findViewById(R.id.correctValue);
+        correctValueView.setText(getString(R.string.correct_value_prefix) + " " + question.getValue());
         correctValueView.setVisibility(View.VISIBLE);
 
         TextView addedPointsView = (TextView)findViewById(R.id.addedPoints);

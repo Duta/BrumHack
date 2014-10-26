@@ -13,6 +13,7 @@ public class ResultsScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results_screen);
+        getActionBar().hide();
 
         Bundle b = getIntent().getExtras();
         TextView scoreText = (TextView)findViewById(R.id.result);
