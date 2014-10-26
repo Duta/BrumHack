@@ -26,15 +26,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mode_3_name"
-        android:id="@+id/mode3"
-        android:textSize="@dimen/game_mode_button_size"
-        android:textColor="@color/foreground_color"
-        android:onClick="mode3Selected" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/settings"
         android:id="@+id/settingsButton"
         android:textSize="@dimen/game_mode_button_size"
