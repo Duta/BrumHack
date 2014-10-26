@@ -13,5 +13,8 @@
     <dimen name="image_height">200dp</dimen>
     <dimen name="results_title_size">50sp</dimen>
     <dimen name="highscores_entry_size">20sp</dimen>
+    <dimen name="value_size">35sp</dimen>
+    <dimen name="mode2OptionImageWidth">30dp</dimen>
+    <dimen name="mode2OptionImageHeight">20dp</dimen>
 
 </resources>

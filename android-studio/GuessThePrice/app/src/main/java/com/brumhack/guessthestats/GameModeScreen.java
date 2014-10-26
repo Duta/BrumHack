@@ -45,12 +45,6 @@ public class GameModeScreen extends Activity {
         startActivity(toMode2Screen);
     }
 
-    public void mode3Selected(View view) {
-        Intent toMode3Screen = new Intent(this, Mode3Screen.class);
-        toMode3Screen.setFlags(toMode3Screen.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
-        startActivity(toMode3Screen);
-    }
-
     public void settings(View view) {
         Intent toSettingsScreen = new Intent(this, SettingsScreen.class);
         startActivity(toSettingsScreen);

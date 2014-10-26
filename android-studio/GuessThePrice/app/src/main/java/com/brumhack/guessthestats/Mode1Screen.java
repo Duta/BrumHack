@@ -3,7 +3,6 @@ package com.brumhack.guessthestats;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -79,15 +77,15 @@ public class Mode1Screen extends Activity {
         invalidInput.setVisibility(View.GONE);
 
         EditText userInput = (EditText)findViewById(R.id.userInput);
-        int given;
+        double given;
         try {
-            given = Integer.parseInt(userInput.getText().toString());
+            given = Double.parseDouble(userInput.getText().toString());
         } catch(NumberFormatException e) {
             invalidInput.setVisibility(View.VISIBLE);
             return;
         }
         int score;
-        int correct = question.getValue();
+        double correct = question.getValue();
         if((given >= 0) && (given <= (2*correct))) {
             double cosValue = Math.cos(given / (correct / Math.PI));
             score = (int) Math.round((MAX_SCORE / 2) - (MAX_SCORE / 2) * cosValue);

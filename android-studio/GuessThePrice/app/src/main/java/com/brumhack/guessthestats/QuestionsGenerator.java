@@ -46,11 +46,22 @@ public final class QuestionsGenerator {
                 while((line = br.readLine()) != null) {
                     try {
                         String[] pieces = line.split(","); // pieces.length == 3
-                        questions.add(new Question(pieces[0], pieces[1], Integer.parseInt(pieces[2])));
+                        questions.add(new Question(pieces[0], pieces[1], Double.parseDouble(pieces[2])));
                     } catch(Exception e) {} // Just don't give a truck
                 }
             } catch(IOException e) {
                 // ohgodwhy.jpg
+            }
+        }
+        return questions;
+    }
+
+    public List<Question> getRandomQuestions(Context context, int numQuestions) {
+        List<Question> questions = new ArrayList<Question>();
+        while(questions.size() < numQuestions) {
+            Question question = getRandomQuestion(context);
+            if(!questions.contains(question)) {
+                questions.add(question);
             }
         }
         return questions;

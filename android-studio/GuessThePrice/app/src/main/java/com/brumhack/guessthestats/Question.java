@@ -6,9 +6,9 @@ package com.brumhack.guessthestats;
 public class Question {
     private String country;
     private String description;
-    private int value;
+    private double value;
 
-    public Question(String country, String description, int value) {
+    public Question(String country, String description, double value) {
         this.country = country;
         this.description = description;
         this.value = value;
@@ -22,7 +22,7 @@ public class Question {
         return description;
     }
 
-    public int getValue() {
+    public double getValue() {
         return value;
     }
 
