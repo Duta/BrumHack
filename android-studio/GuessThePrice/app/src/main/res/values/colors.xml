@@ -1,5 +1,11 @@
 <resources>
 
     <color name="black_overlay">#66000000</color>
+    <color name="background_color">#000000</color>
+    <color name="white_overlay">#20ffffff</color>
+    <color name="foreground_color">#ffffff</color>
+    <color name="green_color">#00FF00</color>
+    <color name="current_score_color">#ff8080ff</color>
+    <color name="red_color">#FF0000</color>
 
 </resources>

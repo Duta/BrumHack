@@ -1,0 +1,18 @@
+<resources>
+    <string name="title_activity_settings_screen">Settings</string>
+
+    <string name="pref_header_units">Units</string>
+
+    <string name="pref_header_currency">Currency</string>
+
+    <string-array name="pref_currency_names">
+        <item>USD ($)</item>
+        <item>GBP (£)</item>
+        <item>EUR (€)</item>
+    </string-array>
+    <string-array name="pref_currency_values">
+        <item>USD</item>
+        <item>GBP</item>
+        <item>EUR</item>
+    </string-array>
+</resources>

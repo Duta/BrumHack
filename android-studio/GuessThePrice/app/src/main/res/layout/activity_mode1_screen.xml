@@ -1,0 +1,112 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".Mode1Screen"
+    android:focusableInTouchMode="false"
+    android:textAlignment="center">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <include layout="@layout/title" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/current_score_prefix"
+                android:id="@+id/score"
+                android:textColor="@color/current_score_color"
+                android:textSize="@dimen/current_score_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&lt;description&gt;"
+                android:id="@+id/description"
+                android:textColor="@color/foreground_color"
+                android:textSize="@dimen/description_size"
+                android:textAlignment="center"
+                android:gravity="center_horizontal" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/countryImage"
+                android:layout_gravity="center_horizontal"
+                android:minWidth="@dimen/image_width"
+                android:maxWidth="@dimen/image_width"
+                android:minHeight="@dimen/image_height"
+                android:maxHeight="@dimen/image_height"
+                android:longClickable="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&lt;country name&gt;"
+                android:id="@+id/countryName"
+                android:textColor="@color/foreground_color"
+                android:textSize="@dimen/description_size"
+                android:textAlignment="center" />
+
+            <EditText
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/userInput"
+                android:background="@color/white_overlay"
+                android:textSize="@dimen/user_input_size"
+                android:textColor="@color/foreground_color" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/guess_text"
+                android:id="@+id/guessButton"
+                android:textColor="@color/foreground_color"
+                android:textSize="@dimen/guess_text_size"
+                android:onClick="guess" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/correct_value_prefix"
+                android:id="@+id/correctValue"
+                android:textColor="@color/foreground_color"
+                android:textSize="@dimen/current_score_size"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/points_suffix"
+                android:id="@+id/addedPoints"
+                android:textColor="@color/green_color"
+                android:textSize="@dimen/current_score_size"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/invalid_input_error"
+                android:id="@+id/invalidInput"
+                android:textColor="@color/red_color"
+                android:textSize="@dimen/current_score_size"
+                android:visibility="gone"
+                android:gravity="center_horizontal" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>
