@@ -88,11 +88,20 @@ public class Mode1Screen extends Activity {
             invalidInput.setVisibility(View.VISIBLE);
             return;
         }
+        int score;
         int correct = question.getValue();
+        if((given >= 0) && (given <= (2*correct))) {
+            double cosValue = Math.cos(Math.toRadians(given / (correct / Math.PI)));
+            score = (int) Math.round((MAX_SCORE / 2) - (MAX_SCORE / 2) * cosValue);
+        }else{
+            score = 0;
+        }
+
+        /*
         int delta = Math.abs(given - correct);
         double difficultyModifier = 75;
         double reduction = (difficultyModifier*delta)/correct;
-        int score = Math.max(0, MAX_SCORE - (int)Math.round(reduction));
+        int score = Math.max(0, MAX_SCORE - (int)Math.round(reduction));*/
 
         currentScore += score;
 
