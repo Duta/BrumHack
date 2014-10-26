@@ -18,7 +18,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-package DataRequest;
+package com.bloomberglp.blpapi.examples;
 
 import java.io.IOException;
 
@@ -34,7 +34,7 @@ import com.bloomberglp.blpapi.SessionOptions;
 /**
  * An example to demonstrate use of CorrelationID.
  */
-public class BloombergData {
+public class CorrelationExample {
     private Session             d_session;
     private SessionOptions      d_sessionOptions;
     private Service             d_refDataService;
@@ -51,23 +51,39 @@ public class BloombergData {
         }
 
         public void displaySecurityInfo(Message msg) {
-            //System.out.println(d_name + ": " + msg);
+            System.out.println(d_name + ": " + msg);
         }
     }
 
-    public BloombergData() {
+    public static void main(String[] args) {
+        System.out.println("CorrelationExample");
+        CorrelationExample example = new CorrelationExample();
+        try {
+            example.run(args);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        System.out.println("Press ENTER to quit");
+        try {
+            System.in.read();
+        } catch (IOException e) {
+        }
+    }
+
+    public CorrelationExample() {
         d_sessionOptions = new SessionOptions();
-        d_sessionOptions.setServerHost("10.8.8.1");
+        d_sessionOptions.setServerHost("localhost");
         d_sessionOptions.setServerPort(8194);
         d_secInfoWindow = new Window("SecurityInfo");
     }
 
-    public String run(String security, String field) throws Exception {
-        if (!createSession()) return null;
+    private void run(String[] args) throws Exception {
+        if (!createSession()) return;
 
         Request request = d_refDataService.createRequest("ReferenceDataRequest");
-        request.getElement("securities").appendValue(security);
-        request.getElement("fields").appendValue(field);
+        request.getElement("securities").appendValue("IBM US Equity");
+        request.getElement("fields").appendValue("PX_LAST");
+        request.getElement("fields").appendValue("DS002");
 
         d_session.sendRequest(request, new CorrelationID(d_secInfoWindow));
 
@@ -78,7 +94,7 @@ public class BloombergData {
                 Message msg = msgIter.next();
                 if (event.eventType() == Event.EventType.RESPONSE ||
                     event.eventType() == Event.EventType.PARTIAL_RESPONSE) {
-                    return (String)msg.getElementAsString(field);
+                    ((Window)(msg.correlationID().object())).displaySecurityInfo(msg);
                 }
             }
             if (event.eventType() == Event.EventType.RESPONSE) {
@@ -86,12 +102,11 @@ public class BloombergData {
                 break;
             }
         }
-        return null;
     }
 
     private boolean createSession() throws Exception {
-        //System.out.println("Connecting to " + d_sessionOptions.getServerHost()
-        //                    + ":" + d_sessionOptions.getServerPort());
+        System.out.println("Connecting to " + d_sessionOptions.getServerHost()
+                            + ":" + d_sessionOptions.getServerPort());
         d_session = new Session(d_sessionOptions);
         if (!d_session.start()) {
             System.err.println("Failed to connect!");

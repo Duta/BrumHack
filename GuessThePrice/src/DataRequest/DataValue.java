@@ -2,56 +2,47 @@ package DataRequest;
 
 public class DataValue {
 
-	private String COUNTRY;
-	private String SECURITY;
-	private String FIELD;
-	private String VALUE;
+	private String country;
+	private String security;
+	private String desc;
+	private String field;
+	private String value;
 	
 	
-	public DataValue(String country, String security, String field) {
+	public DataValue(String inCountry, String inDesc, String inSecurity, String inField) {
+		country = inCountry;
+		desc = inDesc;
+		security = inSecurity;
+		field = inField;
+		value = null;
+	}
 		
-		COUNTRY = country;
-		SECURITY = security;
-		FIELD = field;
-		VALUE = null;
-		
-		
+	public String getDesc(){
+		return desc;
 	}
 	
-	public DataValue(String security, String field) {
-		
-		SECURITY = security;
-		VALUE = field;
-		
-	}
-	
-	
-	public String getSECURITY() {
-		return SECURITY;
+	public String getSecurity() {
+		return security;
 	}
 
-	public void setSECURITY(String sECURITY) {
-		SECURITY = sECURITY;
-	}
-
-	public String getFIELD() {
-		return FIELD;
-	}
-
-	public void setFIELD(String fIELD) {
-		FIELD = fIELD;
+	public String getField() {
+		return field;
 	}
 	
 	public String getCountry() {
-		return this.COUNTRY;
+		return country;
 	}
 	
-	public void setValue(String v) {
-		VALUE = v;
+	public String getValue(){
+		if(value == null) {
+			try {
+				value=SearchBloomberg.find(security,field);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return value;
 	}
-	
-	public String getValue() {
-		return VALUE;
-	}
-	
 }
