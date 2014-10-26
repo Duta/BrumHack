@@ -36,23 +36,23 @@ public class Mode2Screen extends Activity {
             currentScore = b.getInt("results");
         }
 
-        TextView scoreText = (TextView)findViewById(R.id.score);
+        TextView scoreText = (TextView) findViewById(R.id.score);
         scoreText.setText(getString(R.string.current_score_prefix) + " " + currentScore);
 
         question = QuestionsGenerator.getInstance().getRandomQuestion(this);
 
-        ImageView countryImage = (ImageView)findViewById(R.id.countryImage);
+        ImageView countryImage = (ImageView) findViewById(R.id.countryImage);
         try {
             InputStream is = getAssets().open(question.getCountry() + ".png");
             countryImage.setImageDrawable(Drawable.createFromStream(is, null));
-        } catch(IOException ex) {
+        } catch (IOException ex) {
             countryImage.setImageResource(R.drawable.thatguy);
         }
 
-        TextView countryName = (TextView)findViewById(R.id.countryName);
+        TextView countryName = (TextView) findViewById(R.id.countryName);
         countryName.setText(question.getCountryPretty());
 
-        TextView descriptionView = (TextView)findViewById(R.id.description);
+        TextView descriptionView = (TextView) findViewById(R.id.description);
         descriptionView.setText(question.getDescription());
     }
 
@@ -74,20 +74,20 @@ public class Mode2Screen extends Activity {
     }
 
     public void guess(View view) {
-        TextView invalidInput = (TextView)findViewById(R.id.invalidInput);
+        TextView invalidInput = (TextView) findViewById(R.id.invalidInput);
         invalidInput.setVisibility(View.GONE);
 
-        EditText userInput = (EditText)findViewById(R.id.userInput);
+        EditText userInput = (EditText) findViewById(R.id.userInput);
         int given;
         try {
             given = Integer.parseInt(userInput.getText().toString());
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             invalidInput.setVisibility(View.VISIBLE);
             return;
         }
         int score;
         int correct = question.getValue();
-        if((given >= 0) && (given <= (2*correct))) {
+        if ((given >= 0) && (given <= (2 * correct))) {
             double cosValue = Math.cos(given / (correct / Math.PI));
             score = (int) Math.round((MAX_SCORE / 2) - (MAX_SCORE / 2) * cosValue);
         } else {
@@ -102,26 +102,26 @@ public class Mode2Screen extends Activity {
 
         currentScore += score;
 
-        TextView scoreText = (TextView)findViewById(R.id.score);
+        TextView scoreText = (TextView) findViewById(R.id.score);
         scoreText.setText(getString(R.string.current_score_prefix) + " " + currentScore);
 
-        Button button = (Button)findViewById(R.id.guessButton);
+        Button button = (Button) findViewById(R.id.guessButton);
         button.setText("Next");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent;
-                if(roundsCompleted + 1 < NUM_ROUNDS) {
-                    intent = new Intent(Mode1Screen.this, Mode1Screen.class);
+                if (roundsCompleted + 1 < NUM_ROUNDS) {
+                    intent = new Intent(Mode2Screen.this, Mode2Screen.class);
                     Bundle b = new Bundle();
                     b.putInt("rounds", roundsCompleted + 1);
                     b.putInt("results", currentScore);
                     intent.putExtras(b);
                 } else {
-                    intent = new Intent(Mode1Screen.this, ResultsScreen.class);
+                    intent = new Intent(Mode2Screen.this, ResultsScreen.class);
                     Bundle b = new Bundle();
                     b.putInt("finalScore", currentScore);
-                    b.putInt("mode", 1);
+                    b.putInt("mode", 2);
                     intent.putExtras(b);
                 }
                 intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -129,15 +129,15 @@ public class Mode2Screen extends Activity {
             }
         });
 
-        TextView correctValueView = (TextView)findViewById(R.id.correctValue);
+        TextView correctValueView = (TextView) findViewById(R.id.correctValue);
         correctValueView.setText(getString(R.string.correct_value_prefix) + " " + question.getValue());
         correctValueView.setVisibility(View.VISIBLE);
 
-        TextView addedPointsView = (TextView)findViewById(R.id.addedPoints);
-        addedPointsView.setText(score +" "+ getString(R.string.points_suffix));
+        TextView addedPointsView = (TextView) findViewById(R.id.addedPoints);
+        addedPointsView.setText(score + " " + getString(R.string.points_suffix));
         addedPointsView.setVisibility(View.VISIBLE);
 
-        final ScrollView scrollView = (ScrollView)findViewById(R.id.scrollView);
+        final ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
         scrollView.post(new Runnable() {
             @Override
             public void run() {
@@ -145,3 +145,4 @@ public class Mode2Screen extends Activity {
             }
         });
     }
+}
