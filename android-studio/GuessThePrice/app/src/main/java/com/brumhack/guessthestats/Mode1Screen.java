@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class Mode1Screen extends Activity {
-    private static final int NUM_ROUNDS = 2;
+    private static final int NUM_ROUNDS = 10;
     private static final int MAX_SCORE = 100;
     private int roundsCompleted;
     private int currentScore;
@@ -124,6 +124,7 @@ public class Mode1Screen extends Activity {
                     intent = new Intent(Mode1Screen.this, ResultsScreen.class);
                     Bundle b = new Bundle();
                     b.putInt("finalScore", currentScore);
+                    b.putInt("mode", 1);
                     intent.putExtras(b);
                 }
                 intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);

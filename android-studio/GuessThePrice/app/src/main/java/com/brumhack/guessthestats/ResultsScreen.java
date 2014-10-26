@@ -6,6 +6,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.List;
+
 
 public class ResultsScreen extends Activity {
 
@@ -16,8 +24,25 @@ public class ResultsScreen extends Activity {
         getActionBar().hide();
 
         Bundle b = getIntent().getExtras();
+        int mode = b.getInt("mode");
+        int score = b.getInt("finalScore");
+
+//        String hsFilePath = "mode-" + mode + "-hiscores";
+//
+//        try {
+//            BufferedReader br = new BufferedReader(new InputStreamReader(openFileInput(hsFilePath)));
+//            StringBuilder sb = new StringBuilder();
+//            String line;
+//            while((line = br.readLine()) != null) {
+//                sb.append(line);
+//            }
+//            String[] scores = sb.toString().replaceAll("\\s+", "").split(",");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
         TextView scoreText = (TextView)findViewById(R.id.result);
-        scoreText.setText(b.getInt("finalScore") + "");
+        scoreText.setText("" + score);
     }
 
 
