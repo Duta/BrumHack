@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class Mode1Screen extends Activity {
-    private static final int NUM_ROUNDS = 1;
+    private static final int NUM_ROUNDS = 5;
     private static final int MAX_SCORE = 100;
     private int roundsCompleted;
     private int currentScore;
@@ -59,8 +59,6 @@ public class Mode1Screen extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.mode1_screen, menu);
         return true;
     }
 
