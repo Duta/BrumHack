@@ -91,7 +91,7 @@ public class Mode1Screen extends Activity {
         int score;
         int correct = question.getValue();
         if((given >= 0) && (given <= (2*correct))) {
-            double cosValue = Math.cos(Math.toRadians(given / (correct / Math.PI)));
+            double cosValue = Math.cos(given / (correct / Math.PI));
             score = (int) Math.round((MAX_SCORE / 2) - (MAX_SCORE / 2) * cosValue);
         }else{
             score = 0;
