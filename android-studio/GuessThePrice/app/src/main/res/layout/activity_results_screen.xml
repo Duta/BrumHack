@@ -24,16 +24,8 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:id="@+id/result"
-            android:textSize="@dimen/highscores_entry_size"
-            android:textStyle="bold"
-            android:textColor="@color/foreground_color" />
+        android:gravity="center"
+        android:id="@+id/scores">
 
     </LinearLayout>
 

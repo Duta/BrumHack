@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class Mode1Screen extends Activity {
-    private static final int NUM_ROUNDS = 10;
+    private static final int NUM_ROUNDS = 1;
     private static final int MAX_SCORE = 100;
     private int roundsCompleted;
     private int currentScore;
@@ -93,7 +93,7 @@ public class Mode1Screen extends Activity {
         if((given >= 0) && (given <= (2*correct))) {
             double cosValue = Math.cos(given / (correct / Math.PI));
             score = (int) Math.round((MAX_SCORE / 2) - (MAX_SCORE / 2) * cosValue);
-        }else{
+        } else {
             score = 0;
         }
 
