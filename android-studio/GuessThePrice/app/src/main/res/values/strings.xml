@@ -21,7 +21,7 @@
     <string name="points_suffix">points!</string>
     <string name="settings">Settings</string>
     <string name="title_activity_results_screen">ResultsScreen</string>
-    <string name="results_title">Results</string>
+    <string name="results_title">High Scores</string>
     <string name="you_scored">You scored:</string>
     <string name="invalid_input_error">Error: Invalid input</string>
 

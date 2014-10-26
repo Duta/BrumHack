@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class Mode1Screen extends Activity {
-    private static final int NUM_ROUNDS = 2;
+    private static final int NUM_ROUNDS = 1;
     private static final int MAX_SCORE = 100;
     private int roundsCompleted;
     private int currentScore;
@@ -88,11 +88,20 @@ public class Mode1Screen extends Activity {
             invalidInput.setVisibility(View.VISIBLE);
             return;
         }
+        int score;
         int correct = question.getValue();
+        if((given >= 0) && (given <= (2*correct))) {
+            double cosValue = Math.cos(given / (correct / Math.PI));
+            score = (int) Math.round((MAX_SCORE / 2) - (MAX_SCORE / 2) * cosValue);
+        } else {
+            score = 0;
+        }
+
+        /*
         int delta = Math.abs(given - correct);
         double difficultyModifier = 75;
         double reduction = (difficultyModifier*delta)/correct;
-        int score = Math.max(0, MAX_SCORE - (int)Math.round(reduction));
+        int score = Math.max(0, MAX_SCORE - (int)Math.round(reduction));*/
 
         currentScore += score;
 
@@ -115,6 +124,7 @@ public class Mode1Screen extends Activity {
                     intent = new Intent(Mode1Screen.this, ResultsScreen.class);
                     Bundle b = new Bundle();
                     b.putInt("finalScore", currentScore);
+                    b.putInt("mode", 1);
                     intent.putExtras(b);
                 }
                 intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
